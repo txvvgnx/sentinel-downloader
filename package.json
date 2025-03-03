@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.758.0",
+    "cors": "^2.8.5",
+    "readline-sync": "^1.4.10"
+  },
+  "scripts": {
+    "parse": "node parser.js",
+    "download": "node downloader.js",
+    "server": "node server.js",
+    "start": "node server.js"
+  }
+}
