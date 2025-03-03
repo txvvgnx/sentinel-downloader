@@ -11,7 +11,7 @@ The S3 bucket is set to **requester pays**, meaning that your download **may not
 ## Usage
 *To understand the map tiling system and what "rows and columns" mean, read [this section](#but-how-do-map-tiles-work)*
 1. Identify the latitude and longitude boundaries of the area you wish to download satellite images for.
-2. Use `npm run parser` and input Lat/Lng coordinates and zoom values. The parser will return CRS84 and Web Mercator row and column (XY) values. *For example: 1308,1188*
+2. Use `npm run parser` and input Lat/Lng coordinates and zoom values. The parser will return CRS84 row and column (XY) values. *For example: 1308,1188*. Note the CRS84 row/col values for both boundary points.
 3. After converting both boundary points to CRS84, use `npm run download` to download tiles from your specified starting and ending row and column values.
 4. To make these map tiles usable in applications, convert them from `WGS84 (EPSG:4326)` to `Web Mercator (EPSG:3857)` by running `tiler.sh`
 5. Use `npm run server` to run the map server. Tiles are served in the format `http://localhost:8080/{zoomLevel}/{x}/{y}.png`
@@ -23,7 +23,7 @@ Tiles are stored in a table-like structure, and mapping software obtains these t
 
 Zoom levels influence the level of detail a tileset has. A higher zoom = bigger table = more tiles, meaning that a particular row and column for one zoom level does not represent the same location at a different zoom level.
 
-Finally, there are multiple ways in which tiles can be stored. The original tileset uses the WGS84 system, whereas most mapping software require a Web Mercator tileset. These 2 tiling systems are not compatible and a rather complicated conversion is required to switch between the two. Fortunately, there already exists an open source tool `gdal` that can do all the work for us.
+Finally, there are multiple ways in which tiles can be stored. The original tileset uses the CRS84/WGS84 system, whereas most mapping software require a Web Mercator tileset. These 2 tiling systems are not compatible and a rather complicated conversion is required to switch between the two. Fortunately, there already exists an open source tool `gdal` that can do all the work for us.
 
 ## Contributing/issues
 This tool has not been thoroughly tested, especially with very large data sets (i.e. converting/downloading the entire tileset at once). Feel free to report any issues and/or contribute features/bug fixes.
